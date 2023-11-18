@@ -1,75 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "./modal.css";
+import Form from "../Form/Form";
 
-const Modal = () => {
+const Modal = (props) => {
+  const [hasCursor, setHasCursor] = useState(false);
+
+  const handleCloseModal = () => {
+    if (!hasCursor) {
+      props.toggleModal();
+    }
+  };
+
+  const handleMouseOver = () => setHasCursor(true);
+  const handleMouseOut = () => setHasCursor(false);
+
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div
+      className={props.isModalOpen ? "modal open-modal" : "modal"}
+      onClick={handleCloseModal}
+    >
+      <div
+        className="modal-content"
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
         <div className="form-container">
-          <form className="main-form form" id="modal-form">
-            <input
-              type="text"
-              id="modal-title"
-              className="note-title"
-              placeholder="Title"
-            />
-            <input type="text" id="modal-text" placeholder="Take a note..." />
-            <div className="form-actions">
-              <div className="icons">
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    add_alert
-                  </span>
-                  <span className="tooltip-text">Remind me</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    person_add
-                  </span>
-                  <span className="tooltip-text">Collaborator</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    palette
-                  </span>
-                  <span className="tooltip-text">Background options</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    image
-                  </span>
-                  <span className="tooltip-text">Add image</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    archive
-                  </span>
-                  <span className="tooltip-text">Archive</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    more_vert
-                  </span>
-                  <span className="tooltip-text">More</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    undo
-                  </span>
-                  <span className="tooltip-text">Undo</span>
-                </div>
-                <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    redo
-                  </span>
-                  <span className="tooltip-text">Redo</span>
-                </div>
-              </div>
-              <button className="close-btn" id="modal-btn">
-                Close
-              </button>
-            </div>
-          </form>
+          <Form
+            edit
+            selectedNote={props.selectedNote}
+            toggleModal={props.toggleModal}
+            editNote={props.editNote}
+          />
         </div>
       </div>
     </div>

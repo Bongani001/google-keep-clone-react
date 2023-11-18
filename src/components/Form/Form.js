@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import "./form.css";
+import { v4 as uuidv4 } from "uuid";
 
 const Form = (props) => {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [isActiveForm, setIsActiveForm] = useState(false);
+  const [title, setTitle] = useState(
+    (props.edit && props.selectedNote.title) || ""
+  );
+  const [text, setText] = useState(
+    (props.edit && props.selectedNote.text) || ""
+  );
+  const [isActiveForm, setIsActiveForm] = useState(props.edit);
 
   const handleTitleChange = (event) => setTitle(event.target.value);
 
@@ -12,22 +17,32 @@ const Form = (props) => {
     setText(event.target.value);
     setIsActiveForm(true);
   };
-  
 
   function submitFormHandler(event) {
     event.preventDefault();
 
-    const note = {
-      id: Math.random() + "now",
-      title: title,
-      text: text,
-    };
+    if (!props.edit) {
+      const note = {
+        id: uuidv4(),
+        title: title,
+        text: text,
+      };
 
-    props.addNote(note);
+      props.addNote(note);
+
+      setIsActiveForm(false);
+    } else {
+      const note = {
+        id: props.selectedNote.id,
+        title: title,
+        text: text,
+      };
+
+      props.editNote(note);
+      props.toggleModal();
+    }
     setTitle("");
     setText("");
-
-    setIsActiveForm(false);
   }
 
   const handleFormClick = () => {

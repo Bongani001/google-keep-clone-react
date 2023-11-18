@@ -9,7 +9,15 @@ const Notes = (props) => {
         <p>Notes you add will appear here.</p>
       ) : (
         props.notes.map((note, key) => {
-          return <Note key={key} note={note} deleteNote={props.deleteNote} />;
+          return (
+            <Note
+              key={key}
+              note={note}
+              deleteNote={props.deleteNote}
+              toggleModal={props.toggleModal}
+              setSelectedNote={props.setSelectedNote}
+            />
+          );
         })
       )}
     </div>

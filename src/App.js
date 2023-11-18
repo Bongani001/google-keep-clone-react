@@ -7,6 +7,12 @@ import Modal from "./components/Modal/Modal";
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState({});
+
+  const toggleModal = () => {
+    setIsModalOpen((prevState) => !prevState);
+  };
 
   const addNote = (note) => {
     setNotes((prevState) => {
@@ -15,18 +21,45 @@ function App() {
   };
 
   const deleteNote = (id) => {
-    setNotes(prevState => {
-      return prevState.filter(note => note.id !== id)
-    })
-  }
+    setNotes((prevState) => {
+      return prevState.filter((note) => note.id !== id);
+    });
+  };
+
+  const editNote = (note) => {
+    setNotes((prevState) => {
+      return prevState.map((item) => {
+        if (item.id === note.id) {
+          return {
+            id: item.id,
+            title: note.title,
+            text: note.text,
+          };
+        }
+        return item;
+      });
+    });
+  };
 
   return (
     <div className="App">
       <Navbar />
       <Sidebar />
-      <Form addNote={addNote}  />
-      <Notes notes={notes} deleteNote={deleteNote} />
-      <Modal />
+      <Form addNote={addNote} />
+      <Notes
+        notes={notes}
+        deleteNote={deleteNote}
+        toggleModal={toggleModal}
+        setSelectedNote={setSelectedNote}
+      />
+      {isModalOpen && (
+        <Modal
+          isModalOpen={isModalOpen}
+          toggleModal={toggleModal}
+          selectedNote={selectedNote}
+          editNote={editNote}
+        />
+      )}
     </div>
   );
 }

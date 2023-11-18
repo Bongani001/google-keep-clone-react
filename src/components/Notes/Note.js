@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 const Note = (props) => {
-  // const [title, setTitle] = useState(props.note.title);
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   function handleNoteClick() {
-    console.log("");
+    props.toggleModal();
+    props.setSelectedNote(props.note);
   }
 
   const handleMouseOver = () => {
@@ -16,7 +16,10 @@ const Note = (props) => {
     setIsMouseOver(false);
   };
 
-  const deleteHandler = () => props.deleteNote(props.note.id)
+  const deleteHandler = () => {
+    props.toggleModal();
+    props.deleteNote(props.note.id);
+  };
 
   return (
     <div
@@ -25,7 +28,6 @@ const Note = (props) => {
       onClick={handleNoteClick}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      // onmouseover="" onmouseout=""
     >
       <span
         className="material-icons check-circle"
