@@ -1,12 +1,21 @@
 import React from "react";
-import './navbar.css';
+import "./navbar.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const handleSidebarToggler = () => {
+    props.setIsActiveSidebar((prevState) => !prevState);
+  };
+
   return (
     <nav>
       <div className="logo-area">
         <div className="tooltip">
-          <span className="material-icons-outlined hover">menu</span>
+          <span
+            className="material-icons-outlined hover"
+            onClick={handleSidebarToggler}
+          >
+            menu
+          </span>
           <span className="tooltip-text">Main menu</span>
         </div>
         <img

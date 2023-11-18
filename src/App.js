@@ -8,6 +8,7 @@ import Modal from "./components/Modal/Modal";
 function App() {
   const [notes, setNotes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isActiveSidebar, setIsActiveSidebar] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
   const toggleModal = () => {
@@ -43,8 +44,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      <Sidebar />
+      <Navbar setIsActiveSidebar={setIsActiveSidebar} />
+      <Sidebar isActiveSidebar={isActiveSidebar} setIsActiveSidebar={setIsActiveSidebar} />
       <Form addNote={addNote} />
       <Notes
         notes={notes}

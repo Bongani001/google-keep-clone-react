@@ -1,12 +1,22 @@
-import React from "react";
-import './sidebar.css';
+import React, { useState } from "react";
+import "./sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+  const handleMouseOver = () => props.setIsActiveSidebar(true);
+  const handleMouseOut = () => props.setIsActiveSidebar(false);
+
   return (
-    <div className="sidebar">
+    <div
+      className="sidebar"
+      style={{width: props.isActiveSidebar ? "300px" : "70px"}}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
       <div className="sidebar-content">
         <div className="sidebar-item active-item">
-          <span className="material-icons-outlined hover active">lightbulb</span>
+          <span className="material-icons-outlined hover active">
+            lightbulb
+          </span>
           <span>Notes</span>
         </div>
         <div className="sidebar-item">
