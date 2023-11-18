@@ -1,0 +1,62 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    padding: 8px;
+    margin: 0 10px;
+    border-bottom: 1px solid #dadce0;
+    color: #5f6368;
+    z-index: 2;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.3rem;
+    margin-left: 10px;
+}
+
+.search-area {
+    background-color: #f1f3f4;
+    border-radius: 8px;
+    width: 722px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-area span {
+    margin-left: 10px;
+}
+
+.search-area input {
+    background-color: #f1f3f4;
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 95%;
+    font-size: 1rem;
+}
+
+.settings-area {
+    display: flex;
+}
+
+.profile-actions-area {
+    display: flex;
+}
+
+.profile-actions-area .tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-user {
+    cursor: pointer;
+}

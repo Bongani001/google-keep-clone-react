@@ -1,0 +1,20 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+}
+
+.modal-content {
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.open-modal {
+    visibility: visible;
+}

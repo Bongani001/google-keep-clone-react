@@ -1,0 +1,48 @@
+.notes {
+  display: flex;
+  justify-content: center;
+  margin: 30px 60px 0px 60px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 430px;
+  width: 238px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.note:hover {
+  box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.4);
+}
+
+.check-circle {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+.title {
+  margin: 10px 0 0 10px;
+  font-weight: 600;
+}
+
+.text {
+  margin: 10px 0 0 10px;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.note-footer .tooltip {
+  color: #5f6368;
+}
